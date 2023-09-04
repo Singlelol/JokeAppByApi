@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 import JokeList from "./components/JokeList";
+import AddJoke from "./components/AddJoke";
 import "./App.css";
+
 
 function App() {
   // const dummyJokes = [
@@ -27,7 +29,7 @@ function App() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('https://official-joke-api.appspot.com/random_ten');
+      const response = await fetch('https://react-course-http-b2dfe-default-rtdb.europe-west1.firebasedatabase.app/');
       if (!response.ok) {
         throw new Error('Что-то пошло не так...')
       }
@@ -42,6 +44,10 @@ function App() {
   useEffect(() => {
     fetchJokesHandler();
   }, [fetchJokesHandler]);
+
+  function addJokeHandler(joke) {
+    console.log(joke);
+  };
 
   let content = <p>Шуток не найдено.</p>;
 
@@ -59,6 +65,9 @@ function App() {
 
   return (
     <React.Fragment>
+      <section>
+        <AddJoke onAddJoke={addJokeHandler}/>
+      </section>
       <section>
         <button onClick={fetchJokesHandler}>Fetch Jokes</button>
       </section>
