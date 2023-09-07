@@ -10,9 +10,9 @@ function AddJoke(props) {
     event.preventDefault();
 
     const joke = {
-      type: typeRef.current.valueOf,
-      setup: setupRef.current.valueOf,
-      punchline: punchlineRef.current.valueOf,
+      type: typeRef.current.value,
+      setup: setupRef.current.value,
+      punchline: punchlineRef.current.value,
     }
 
     props.onAddJoke(joke);
